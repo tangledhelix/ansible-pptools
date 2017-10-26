@@ -1,0 +1,13 @@
+[uwsgi]
+
+chdir = /opt/pptools/wsgi
+module = pptools:app
+
+master = true
+processes = 5
+
+socket = /tmp/pptools.sock
+chmod-socket = 666
+
+vacuum = true
+plugin = python3

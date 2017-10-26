@@ -1,0 +1,37 @@
+- name: Install packages
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - python3-flask
+    - python3-lxml
+    - python3-roman
+    - w3c-sgml-lib
+    - dwdiff
+    - python3-cssselect
+    - python-pip
+    - python3-pip
+    - python3-dev
+    - uwsgi
+    - uwsgi-plugin-python3
+    - nginx
+
+- name: Install Python packages
+  pip:
+    name: "{{ item }}"
+    state: present
+    executable: pip3
+  with_items:
+    - tinycss
+    - flask-wtf
+
+- name: Clone DChars git repo
+  git:
+    repo: "https://github.com/suizokukan/dchars.git"
+    dest: /var/tmp/dchars
+
+- name: Install DChars
+  command: python3 setup.py install --record install.txt
+  args:
+    chdir: /var/tmp/dchars
+    creates: /usr/local/lib/python3.5/dist-packages/DChars-0.6.6-py3.5.egg

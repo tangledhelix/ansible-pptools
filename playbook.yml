@@ -1,0 +1,13 @@
+---
+- hosts: all
+  gather_facts: false
+  pre_tasks:
+    - name: Install python
+      raw: apt-get install -y python
+
+- hosts: all
+  roles:
+    - packages
+    - pptools_setup
+    - uwsgi
+    - nginx

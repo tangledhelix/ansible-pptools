@@ -1,0 +1,33 @@
+- name: Create pptools directory
+  file:
+    path: /opt/pptools
+    state: directory
+
+- name: Git checkout of pptools code
+  git:
+    repo: "https://github.com/bibimbop/pptools-openshift.git"
+    dest: /opt/pptools
+
+- name: Create temp directory
+  file:
+    path: /opt/pptools/wsgi/temp
+    state: directory
+    mode: 0755
+    owner: www-data
+    group: www-data
+
+- name: Create uploads directory
+  file:
+    path: /opt/pptools/wsgi/temp/uploads
+    state: directory
+    mode: 0755
+    owner: www-data
+    group: www-data
+
+- name: Create projects directory
+  file:
+    path: /opt/pptools/wsgi/projects
+    state: directory
+    mode: 0755
+    owner: www-data
+    group: www-data

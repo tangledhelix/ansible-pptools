@@ -1,0 +1,22 @@
+- name: nginx configuration file
+  template:
+    src: pptools.j2
+    dest: /etc/nginx/sites-available/pptools
+    mode: 0644
+    owner: root
+    group: root
+  notify: restart nginx
+
+- name: nginx activation link for configuration file
+  file:
+    src: /etc/nginx/sites-available/pptools
+    dest: /etc/nginx/sites-enabled/pptools
+    owner: root
+    group: root
+    state: link
+
+- name: Make sure nginx service is running
+  systemd:
+    state: started
+    enabled: true
+    name: nginx
