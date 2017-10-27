@@ -1,0 +1,6 @@
+- name: Daily cleanup cron
+  cron:
+    name: "daily cleanup"
+    minute: "0"
+    hour: "0"
+    job: "find /opt/pptools/wsgi/projects -maxdepth 1 -mtime +15 -exec rm -rf {} \\;"

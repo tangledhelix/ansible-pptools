@@ -11,3 +11,4 @@
     - pptools_setup
     - uwsgi
     - nginx
+    - cron
