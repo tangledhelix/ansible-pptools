@@ -1,0 +1,16 @@
+- name: Allow port 22 (ssh)
+  ufw:
+    rule: allow
+    port: 22
+    proto: tcp
+
+- name: Allow port 80 (http)
+  ufw:
+    rule: allow
+    port: 80
+    proto: tcp
+
+- name: Activate firewall
+  ufw:
+    state: enabled
+    logging: on
