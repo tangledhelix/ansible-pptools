@@ -22,9 +22,9 @@ server {
 
     location = /favicon.ico { access_log off; log_not_found off; }
 
-    #location /static/ {
-    #    root /opt/pptools/wsgi/static;
-    #}
+    location /static {
+        alias /opt/pptools/wsgi/static;
+    }
 
     location / {
         include         uwsgi_params;
