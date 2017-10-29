@@ -10,6 +10,12 @@
     port: 80
     proto: tcp
 
+- name: Allow port 443 (https)
+  ufw:
+    rule: allow
+    port: 443
+    proto: tcp
+
 - name: Activate firewall
   ufw:
     state: enabled

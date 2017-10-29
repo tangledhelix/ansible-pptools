@@ -15,6 +15,7 @@
     - uwsgi
     - uwsgi-plugin-python3
     - nginx
+    - letsencrypt
 
 - name: Install Python packages
   pip:
