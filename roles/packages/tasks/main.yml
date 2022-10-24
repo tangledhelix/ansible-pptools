@@ -9,7 +9,6 @@
     - w3c-sgml-lib
     - dwdiff
     - python3-cssselect
-    - python-pip
     - python3-pip
     - python3-dev
     - uwsgi
