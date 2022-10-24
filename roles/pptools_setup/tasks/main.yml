@@ -5,7 +5,7 @@
 
 - name: Git checkout of pptools code
   git:
-    repo: "https://github.com/bibimbop/pptools-openshift.git"
+    repo: "https://github.com/tangledhelix/pptools.git"
     dest: /opt/pptools
 
 - name: Create temp directory

@@ -2,7 +2,7 @@
 
 This is a playbook to set up a pptools server.
 
-Based on https://github.com/bibimbop/pptools-openshift
+Based on https://github.com/tangledhelix/pptools/
 
 ## Assumptions
 
