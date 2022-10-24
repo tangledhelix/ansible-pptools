@@ -1,11 +1,17 @@
 - name: Install uwsgi configuration file
   template:
     src: pptools.ini.j2
-    dest: /etc/uwsgi/apps-enabled/pptools.ini
+    dest: /etc/uwsgi/apps-available/pptools.ini
     mode: 0644
     owner: root
     group: root
   notify: Restart uwsgi
+
+- name: Enable uwsgi configuration file
+  file:
+    src: /etc/uwsgi/apps-available/pptools.ini
+    dest: /etc/uwsgi/apps-enabled/pptools.ini
+    state: link
 
 - name: Make sure uwsgi service is running
   systemd:

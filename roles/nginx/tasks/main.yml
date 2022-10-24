@@ -12,8 +12,14 @@
 - name: Nginx http config
   template:
     src: http.j2
-    dest: /etc/nginx/sites-enabled/http
+    dest: /etc/nginx/sites-available/http
   register: nginx_http_config
+
+- name: Enable Nginx http config
+  file:
+    src: /etc/nginx/sites-available/http
+    dest: /etc/nginx/sites-enabled/http
+    state: link
 
 - name: Restart nginx for letsencrypt
   service:
@@ -34,11 +40,18 @@
 - name: Nginx pptools site config
   template:
     src: pptools.j2
-    dest: /etc/nginx/sites-enabled/pptools
+    dest: /etc/nginx/sites-available/pptools
     mode: 0644
     owner: root
     group: root
   notify: Restart nginx
+
+- name: Enable Nginx pptools site config
+  file:
+    src: /etc/nginx/sites-available/pptools
+    dest: /etc/nginx/sites-enabled/pptools
+    state: link
+
 
 - name: Make sure nginx service is running
   systemd:
