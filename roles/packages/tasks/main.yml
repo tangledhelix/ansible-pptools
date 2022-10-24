@@ -30,11 +30,11 @@
 
 - name: Clone DChars git repo
   git:
-    repo: "https://github.com/suizokukan/dchars.git"
+    repo: "https://github.com/tangledhelix/dchars.git"
     dest: /var/tmp/dchars
 
 - name: Install DChars
   command: python3 setup.py install --record install.txt
   args:
     chdir: /var/tmp/dchars
-    creates: /usr/local/lib/python3.5/dist-packages/DChars-0.6.6-py3.5.egg
+    creates: /usr/local/lib/python3.10/dist-packages/DChars-0.6.6-py3.10.egg
