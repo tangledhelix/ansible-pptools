@@ -13,21 +13,21 @@
     path: /opt/pptools/wsgi/temp
     state: directory
     mode: 0755
-    owner: www-data
-    group: www-data
+    owner: "www-data"
+    group: "www-data"
 
 - name: Create uploads directory
   file:
     path: /opt/pptools/wsgi/temp/uploads
     state: directory
     mode: 0755
-    owner: www-data
-    group: www-data
+    owner: "www-data"
+    group: "www-data"
 
 - name: Create projects directory
   file:
     path: /opt/pptools/wsgi/projects
     state: directory
     mode: 0755
-    owner: www-data
-    group: www-data
+    owner: "www-data"
+    group: "www-data"
