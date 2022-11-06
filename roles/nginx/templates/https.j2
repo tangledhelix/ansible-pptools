@@ -29,6 +29,9 @@ server {
     ssl_dhparam /etc/nginx/dhparams.pem;
     ssl_prefer_server_ciphers on;
 
+    access_log /var/log/nginx/{{ inventory_hostname }}-access.log;
+    error_log /var/log/nginx/{{ inventory_hostname }}-error.log;
+
     server_name {{ inventory_hostname }};
 
     location = /favicon.ico { access_log off; log_not_found off; }
