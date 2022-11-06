@@ -3,10 +3,14 @@
     name: "daily cleanup"
     minute: "0"
     hour: "0"
-    job: "find /opt/pptools/wsgi/projects -maxdepth 1 -mtime +15 -exec rm -rf {} \\;"
+    job: "find {{ pptools_basedir }}/wsgi/projects -maxdepth 1 -mtime +15 -exec rm -rf {} \\;"
+  tags:
+    - cron
 
 - name: Add letsencrypt cronjob for cert renewal
   cron:
     name: letsencrypt_renewal
     special_time: weekly
     job: letsencrypt --renew certonly -n --webroot -w /var/www/letsencrypt -m dan@tangledhelix.com --agree-tos -d {{ inventory_hostname }} && systemctl reload nginx.service
+  tags:
+    - cron

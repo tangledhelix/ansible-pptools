@@ -1,5 +1,7 @@
 - name: Update Repository cache
   shell: apt-get update
+  tags:
+    - packages
 
 - name: Install packages
   apt:
@@ -18,6 +20,8 @@
     - uwsgi-plugin-python3
     - nginx
     - letsencrypt
+  tags:
+    - packages
 
 - name: Install Python packages
   pip:
@@ -27,14 +31,23 @@
   with_items:
     - tinycss
     - flask-wtf
+  tags:
+    - packages
+    - python
 
 - name: Clone DChars git repo
   git:
-    repo: "https://github.com/tangledhelix/dchars.git"
+    repo: "{{ dchars_git_url }}"
     dest: /var/tmp/dchars
+  tags:
+    - packages
+    - python
 
 - name: Install DChars
   command: python3 setup.py install --record install.txt
   args:
     chdir: /var/tmp/dchars
-    creates: /usr/local/lib/python3.10/dist-packages/DChars-0.6.6-py3.10.egg
+    creates: "/usr/local/lib/python{{ python_version }}/dist-packages/DChars-{{ dchars_version }}-py{{ python_version }}.egg"
+  tags:
+    - packages
+    - python

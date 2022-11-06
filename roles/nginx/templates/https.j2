@@ -1,13 +1,13 @@
+
 add_header X-Frame-Options SAMEORIGIN;
 add_header X-Content-Type-Options nosniff;
 add_header X-XSS-Protection "1; mode=block";
 add_header Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.google-analytics.com; img-src 'self' data: https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; font-src 'self'; frame-src 'none'; object-src 'none'";
 
 server {
-    listen 443 ssl default deferred;
-    listen [::]:443 ssl default deferred;
+    listen 443 ssl;
+    listen [::]:443;
 
-    ssl on;
     ssl_certificate         /etc/letsencrypt/live/{{ inventory_hostname }}/fullchain.pem;
     ssl_certificate_key     /etc/letsencrypt/live/{{ inventory_hostname }}/privkey.pem;
     ssl_trusted_certificate /etc/letsencrypt/live/{{ inventory_hostname }}/fullchain.pem;
@@ -34,7 +34,7 @@ server {
     location = /favicon.ico { access_log off; log_not_found off; }
 
     location /static {
-        alias /opt/pptools/wsgi/static;
+        alias {{ pptools_basedir }}/wsgi/static;
     }
 
     location / {

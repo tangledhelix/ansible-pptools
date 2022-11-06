@@ -1,33 +1,43 @@
 - name: Create pptools directory
   file:
-    path: /opt/pptools
+    path: "{{ pptools_basedir }}"
     state: directory
+  tags:
+    - app_setup
 
 - name: Git checkout of pptools code
   git:
-    repo: "https://github.com/tangledhelix/pptools.git"
-    dest: /opt/pptools
+    repo: "{{ pptools_git_url }}"
+    dest: "{{ pptools_basedir }}"
+  tags:
+    - app_setup
 
 - name: Create temp directory
   file:
-    path: /opt/pptools/wsgi/temp
+    path: "{{ pptools_basedir }}/wsgi/temp"
     state: directory
     mode: 0755
     owner: "www-data"
     group: "www-data"
+  tags:
+    - app_setup
 
 - name: Create uploads directory
   file:
-    path: /opt/pptools/wsgi/temp/uploads
+    path: "{{ pptools_basedir }}/wsgi/temp/uploads"
     state: directory
     mode: 0755
     owner: "www-data"
     group: "www-data"
+  tags:
+    - app_setup
 
 - name: Create projects directory
   file:
-    path: /opt/pptools/wsgi/projects
+    path: "{{ pptools_basedir }}/wsgi/projects"
     state: directory
     mode: 0755
     owner: "www-data"
     group: "www-data"
+  tags:
+    - app_setup

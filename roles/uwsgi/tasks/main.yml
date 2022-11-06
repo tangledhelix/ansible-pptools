@@ -6,15 +6,21 @@
     owner: root
     group: root
   notify: Restart uwsgi
+  tags:
+    - uwsgi
 
 - name: Enable uwsgi configuration file
   file:
     src: /etc/uwsgi/apps-available/pptools.ini
     dest: /etc/uwsgi/apps-enabled/pptools.ini
     state: link
+  tags:
+    - uwsgi
 
 - name: Make sure uwsgi service is running
   systemd:
     state: started
     enabled: true
     name: uwsgi
+  tags:
+    - uwsgi
