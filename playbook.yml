@@ -1,13 +1,11 @@
 ---
-- hosts: all
+- hosts: "all"
   vars_files:
-    - "./vars/paths.yml"
-    - "./vars/urls.yml"
-    - "./vars/versions.yml"
+    - "./vars/pptools.yml"
   roles:
-    - firewall
-    - packages
-    - app_setup
-    - uwsgi
-    - nginx
-    - cron
+    - "firewall"
+    - "packages"
+    - "app_setup"
+    - "uwsgi"
+    - "nginx"
+    - "cron"

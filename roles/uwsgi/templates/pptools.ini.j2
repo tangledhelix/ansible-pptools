@@ -1,12 +1,12 @@
 [uwsgi]
 
-chdir = {{ pptools_basedir }}/wsgi
+chdir = {{ base_dir }}/wsgi
 module = pptools:app
 
 master = true
 processes = 5
 
-socket = /tmp/pptools.sock
+socket = /tmp/{{ app_name }}.sock
 chmod-socket = 666
 
 vacuum = true

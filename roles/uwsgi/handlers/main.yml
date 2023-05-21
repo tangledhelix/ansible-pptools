@@ -1,4 +1,4 @@
-- name: Restart uwsgi
+- name: "Restart uwsgi"
   service:
-    name: uwsgi
-    state: restarted
+    name: "uwsgi"
+    state: "restarted"

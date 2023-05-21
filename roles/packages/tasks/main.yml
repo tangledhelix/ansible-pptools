@@ -1,53 +1,53 @@
-- name: Update Repository cache
-  shell: apt-get update
+- name: "Update Repository cache"
+  shell: "apt-get update"
   tags:
-    - packages
+    - "packages"
 
-- name: Install packages
+- name: "Install packages"
   apt:
     name: "{{ item }}"
-    state: present
+    state: "present"
   with_items:
-    - python3-flask
-    - python3-lxml
-    - python3-roman
-    - w3c-sgml-lib
-    - dwdiff
-    - python3-cssselect
-    - python3-pip
-    - python3-dev
-    - uwsgi
-    - uwsgi-plugin-python3
-    - nginx
-    - letsencrypt
+    - "python3-flask"
+    - "python3-lxml"
+    - "python3-roman"
+    - "w3c-sgml-lib"
+    - "dwdiff"
+    - "python3-cssselect"
+    - "python3-pip"
+    - "python3-dev"
+    - "uwsgi"
+    - "uwsgi-plugin-python3"
+    - "nginx"
+    - "letsencrypt"
   tags:
-    - packages
+    - "packages"
 
-- name: Install Python packages
+- name: "Install Python packages"
   pip:
     name: "{{ item }}"
-    state: present
-    executable: pip3
+    state: "present"
+    executable: "pip3"
   with_items:
-    - tinycss
-    - flask-wtf
+    - "tinycss"
+    - "flask-wtf"
   tags:
-    - packages
-    - python
+    - "packages"
+    - "python"
 
-- name: Clone DChars git repo
+- name: "Clone DChars git repo"
   git:
     repo: "{{ dchars_git_url }}"
-    dest: /var/tmp/dchars
+    dest: "/var/tmp/dchars"
   tags:
-    - packages
-    - python
+    - "packages"
+    - "python"
 
-- name: Install DChars
-  command: python3 setup.py install --record install.txt
+- name: "Install DChars"
+  command: "python3 setup.py install --record install.txt"
   args:
-    chdir: /var/tmp/dchars
+    chdir: "/var/tmp/dchars"
     creates: "/usr/local/lib/python{{ python_version }}/dist-packages/DChars-{{ dchars_version }}-py{{ python_version }}.egg"
   tags:
-    - packages
-    - python
+    - "packages"
+    - "python"

@@ -1,43 +1,44 @@
-- name: Create pptools directory
+- name: "Create pptools directory"
   file:
-    path: "{{ pptools_basedir }}"
-    state: directory
+    path: "{{ base_dir }}"
+    state: "directory"
   tags:
-    - app_setup
+    - "app_setup"
 
-- name: Git checkout of pptools code
+- name: "Git checkout of pptools code"
   git:
     repo: "{{ pptools_git_url }}"
-    dest: "{{ pptools_basedir }}"
+    dest: "{{ base_dir }}"
+    version: "{{ pptools_git_branch }}"
   tags:
-    - app_setup
+    - "app_setup"
 
-- name: Create temp directory
+- name: "Create temp directory"
   file:
-    path: "{{ pptools_basedir }}/wsgi/temp"
-    state: directory
-    mode: 0755
+    path: "{{ base_dir }}/wsgi/temp"
+    state: "directory"
+    mode: "0755"
     owner: "www-data"
     group: "www-data"
   tags:
-    - app_setup
+    - "app_setup"
 
-- name: Create uploads directory
+- name: "Create uploads directory"
   file:
-    path: "{{ pptools_basedir }}/wsgi/temp/uploads"
-    state: directory
-    mode: 0755
+    path: "{{ base_dir }}/wsgi/temp/uploads"
+    state: "directory"
+    mode: "0755"
     owner: "www-data"
     group: "www-data"
   tags:
-    - app_setup
+    - "app_setup"
 
-- name: Create projects directory
+- name: "Create projects directory"
   file:
-    path: "{{ pptools_basedir }}/wsgi/projects"
-    state: directory
-    mode: 0755
+    path: "{{ base_dir }}/wsgi/projects"
+    state: "directory"
+    mode: "0755"
     owner: "www-data"
     group: "www-data"
   tags:
-    - app_setup
+    - "app_setup"

@@ -1,26 +1,26 @@
-- name: Install uwsgi configuration file
+- name: "Install uwsgi configuration file"
   template:
-    src: pptools.ini.j2
-    dest: /etc/uwsgi/apps-available/pptools.ini
-    mode: 0644
-    owner: root
-    group: root
-  notify: Restart uwsgi
+    src: "pptools.ini.j2"
+    dest: "/etc/uwsgi/apps-available/{{ app_name }}.ini"
+    mode: "0644"
+    owner: "root"
+    group: "root"
+  notify: "Restart uwsgi"
   tags:
-    - uwsgi
+    - "uwsgi"
 
-- name: Enable uwsgi configuration file
+- name: "Enable uwsgi configuration file"
   file:
-    src: /etc/uwsgi/apps-available/pptools.ini
-    dest: /etc/uwsgi/apps-enabled/pptools.ini
-    state: link
+    src: "/etc/uwsgi/apps-available/{{ app_name }}.ini"
+    dest: "/etc/uwsgi/apps-enabled/{{ app_name }}.ini"
+    state: "link"
   tags:
-    - uwsgi
+    - "uwsgi"
 
-- name: Make sure uwsgi service is running
+- name: "Make sure uwsgi service is running"
   systemd:
-    state: started
-    enabled: true
-    name: uwsgi
+    state: "started"
+    enabled: "true"
+    name: "uwsgi"
   tags:
-    - uwsgi
+    - "uwsgi"
