@@ -10,6 +10,7 @@
     repo: "{{ pptools_git_url }}"
     dest: "{{ base_dir }}"
     version: "{{ pptools_git_branch }}"
+  notify: "Restart uwsgi"
   tags:
     - "app_setup"
 
