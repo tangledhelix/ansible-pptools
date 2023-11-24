@@ -1,6 +1,6 @@
 - name: Daily cleanup cron
   cron:
-    name: "daily cleanup"
+    name: "daily_cleanup_{{ app_name }}"
     minute: "0"
     hour: "0"
     job: "find {{ base_dir }}/wsgi/projects -maxdepth 1 -mtime +15 -exec rm -rf {} \\;"
@@ -9,7 +9,7 @@
 
 - name: Add letsencrypt cronjob for cert renewal
   cron:
-    name: letsencrypt_renewal_pptools
+    name: "letsencrypt_renewal_{{ app_name }}"
     special_time: weekly
     job: letsencrypt --renew-by-default certonly -n --webroot -w /var/www/letsencrypt -m {{ letsencrypt_email }} --agree-tos -d {{ inventory_hostname }} && systemctl reload nginx.service
   tags:
